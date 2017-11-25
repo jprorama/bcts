@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>bookmarkcurrenttabset@jake.kasprzak.ca</em:id>
+		<em:name>Bookmark Current Tab Set</em:name>
+		<em:version>0.2.4.1-signed.1-signed</em:version>
+		<em:description>Adds options to bookmark all tabs in a window (optionally without opening a dialog) and store them in a new bookmark folder that is given the current date (and optionally the time) as its name.</em:description>
+		<em:creator>Jake Kasprzak</em:creator>
+		<em:optionsURL>chrome://bcts/content/dialogs/options.xul</em:optionsURL>
+		<em:homepageURL>http://www.jake.kasprzak.ca</em:homepageURL>
+		<em:aboutURL>chrome://bcts/content/dialogs/about.xul</em:aboutURL>
+		
+		<!-- Firefox -->
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>3.0</em:minVersion>
+				<em:maxVersion>7.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		
+	</Description>     		
+</RDF>

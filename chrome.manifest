@@ -1,0 +1,5 @@
+content		bcts	chrome/content/
+resource	bcts 	./
+locale		bcts	en-US									chrome/locale/en-US/
+overlay		chrome://browser/content/browser.xul			chrome://bcts/content/bctsOverlay.xul
+overlay		chrome://navigator/content/navigatorOverlay.xul	chrome://bcts/content/bctsOverlay.xul

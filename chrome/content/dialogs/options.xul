@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://bcts/locale/options.dtd">
+
+<dialog buttons="accept,cancel"
+	id="bcts-options-dialog"
+	ondialogaccept="return caKasprzakJakeBctsOptions.saveOptions();" 
+	ondialogcancel="return;"
+	onload="caKasprzakJakeBctsOptions.initOptions();"
+	title="&options.label;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<script type="application/x-javascript" src="chrome://bcts/content/dialogs/options.js"></script>
+	
+	<tabbox id="tabList">
+		<tabs>
+			<tab label="&folderNameConfigTab.label;"/>
+			<tab label="&automaticBookmarkingTab.label;"/>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<groupbox>
+				    <caption label="&folderNameConfig.label;"/>
+				    <radiogroup id="dateFormat">
+				        <vbox>
+						  <radio id="o" value="o" label="&original.label;" accesskey="&original.accesskey;"/>
+				          <radio id="m" value="m" label="&mdy.label;" accesskey="&mdy.accesskey;"/>
+				          <radio id="d" value="d" label="&dmy.label;" accesskey="&dmy.accesskey;"/>
+						  <radio id="y" value="y" label="&ymd.label;" accesskey="&ymd.accesskey;"/>	 
+				        </vbox>
+				    </radiogroup>
+					<checkbox id="includeTime" label="&includeTime.label;" accesskey="&includeTime.accesskey;"/>
+				</groupbox> 
+			</tabpanel>
+			<tabpanel>
+				<checkbox id="bookmarkOnClosingWindow" label="&bookmarkOnClosingWindow.label;" accesskey="&bookmarkOnClosingWindow.accesskey;"/>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</dialog>

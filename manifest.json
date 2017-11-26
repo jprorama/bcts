@@ -20,7 +20,7 @@
   },
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["modules/shared.jsm", "chrome/content/bcts.js"]
   }
 
 }

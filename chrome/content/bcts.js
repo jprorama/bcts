@@ -1,4 +1,3 @@
-Components.utils.import("resource://bcts/modules/shared.jsm");
 
 var caKasprzakJakeBcts =
 {

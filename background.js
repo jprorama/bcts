@@ -50,7 +50,7 @@ function bookmarkTabSet(windowId) {
 
     }
     
-    var dateString = returnDate("o", true);
+    var dateString = returnDate("y", true);
     var tabList = windows[windowId];
 				     
     browser.bookmarks.create({title: dateString}).then(saveTabs)

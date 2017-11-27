@@ -44,7 +44,7 @@ function bookmarkTabSet(windowId) {
 
     function saveTabs(node) {
 	//after creating this new bookmark folder, go through each tab and bookmark each one
-	for (var i = tabList.length - 1 ; i > 0; i--) {
+	for (var i = tabList.length - 1 ; i >= 0; i--) {
 	    browser.bookmarks.create({parentId: node.id, title: tabList[i].title, url: tabList[i].url})
 	}
 

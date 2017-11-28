@@ -93,3 +93,54 @@ browser.tabs.onUpdated.addListener(urlInfo);
 browser.tabs.onUpdated.addListener(recordTabs);
 
 browser.windows.onRemoved.addListener(bookmarkTabSet);
+
+
+// Build the list of currently open windows and their tabs
+// Supports loading this extension after browser is already running.
+// Window browsing logic comes from MDN example code for tabs and windows
+//
+// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/windows/getAll
+// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/query
+//
+function logTabsForWindows(windowInfoArray) {
+
+    function logTabs(tabs) {
+	for (let tab of tabs) {
+
+	    // capture the info need to create a bookmark
+	    let tabBookmarkInfo = { url: tab.url,
+				    title: tab.title};
+
+	    // update the the windows+tabs data structure
+	    // each window id has an array of tabs, each with bookmark info
+	    if ( windows[tab.windowId] ) {
+		let tablist = windows[tab.windowId];
+		tablist[tab.index] = tabBookmarkInfo;
+		window[tab.windowId] = tablist;
+	    }
+	    else {
+		let tabList = [ tabBookmarkInfo ];
+		windows[tab.windowId] = tabList;
+	    }
+	}
+    }
+
+    for (let windowInfo of windowInfoArray) {
+	console.log(`Window: ${windowInfo.id}`);
+	console.log(windowInfo.tabs.map((tab) => {return tab.url}));
+
+	browser.tabs.query({windowId: windowInfo.id}).then(logTabs, onError);
+    }
+}
+
+function onError(error) {
+    console.log(`Error: ${error}`);
+}
+
+browser.browserAction.onClicked.addListener((tab) => {
+    var getting = browser.windows.getAll({
+	populate: true,
+	windowTypes: ["normal"]
+    });
+    getting.then(logTabsForWindows, onError);
+});

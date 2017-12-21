@@ -19,7 +19,7 @@ function recordTabs(tabId, changeInfo, tab) {
     // Note: this event is fired twice:
     // Once with `changeInfo.status` = "loading" and another time with "complete"
 
-    // don't bookmark privacy mode tabs
+    // don't record privacy mode tabs
     if ( ! tab.incognito ) {
 	// capture the info need to create a bookmark
 	let tabBookmarkInfo = { url: tab.url,

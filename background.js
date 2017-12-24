@@ -18,6 +18,10 @@ function recordTabs(tabId, changeInfo, tab) {
 
     // Note: this event is fired twice:
     // Once with `changeInfo.status` = "loading" and another time with "complete"
+    // Ignore tab until it's loaded
+    if ( changeInfo.status == "loading" ) {
+	return;
+    }
 
     // don't record privacy mode tabs
     if ( ! tab.incognito ) {

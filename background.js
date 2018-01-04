@@ -14,29 +14,36 @@ var windows = {};
 
 function recordTabs(tabId, changeInfo, tab) {
 
-    console.log("Record tab url");
+    // don't record privacy mode tabs
+    if ( tab.incognito ) {
+	return;
+    }
 
+    
     // Note: this event is fired twice:
     // Once with `changeInfo.status` = "loading" and another time with "complete"
+    // Ignore tab until it's loaded
+    if ( changeInfo.status === "loading" ) {
+	return;
+    }
 
-    // don't record privacy mode tabs
-    if ( ! tab.incognito ) {
-	// capture the info need to create a bookmark
-	let tabBookmarkInfo = { url: tab.url,
-				title: tab.title,
-				windowId: tab.windowId };
+    console.log("Record tab url");
 
-	// update the the windows+tabs data structure
-	// each window id has an array of tabs, each with bookmark info
-	if ( windows[tab.windowId] ) {
-	    let tablist = windows[tab.windowId];
-	    tablist[tab.index] = tabBookmarkInfo;
-	    window[tab.windowId] = tablist;
-	}
-	else {
-	    let tabList = [ tabBookmarkInfo ];
-	    windows[tab.windowId] = tabList;
-	}
+    // capture the info need to create a bookmark
+    let tabBookmarkInfo = { url: tab.url,
+			    title: tab.title,
+			    windowId: tab.windowId };
+    
+    // update the the windows+tabs data structure
+    // each window id has an array of tabs, each with bookmark info
+    if ( windows[tab.windowId] ) {
+	let tablist = windows[tab.windowId];
+	tablist[tab.index] = tabBookmarkInfo;
+	window[tab.windowId] = tablist;
+    }
+    else {
+	let tabList = [ tabBookmarkInfo ];
+	windows[tab.windowId] = tabList;
     }
 }
 

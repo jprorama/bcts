@@ -164,3 +164,14 @@ browser.browserAction.onClicked.addListener((tab) => {
     });
     getting.then(logTabsForWindows, onError);
 });
+
+// utilities for debugging
+function listWindows() {
+
+    for (let window in windows) {
+	console.log("window: " + window);
+	for (let tab of windows[window]) {
+	    console.log(tab);
+	}
+    }
+}

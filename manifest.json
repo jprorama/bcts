@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Bookmark Current Tab Set",
-  "version": "0.3.0.0",
+  "version": "0.3.0.1",
   "description": "Adds options to bookmark all tabs in a window (optionally without opening a dialog) and store them in a new bookmark folder that is given the current date (and optionally the time) as its name.",
   "homepage_url": "https://github.com/jprorama/bcts",
   "icons": {

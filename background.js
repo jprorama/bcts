@@ -54,15 +54,26 @@ function bookmarkTabSet(windowId) {
     function saveTabs(node) {
 	//after creating this new bookmark folder, go through each tab and bookmark each one
 	for (var i = tabList.length - 1 ; i >= 0; i--) {
+	    var t0 = performance.now();
+
 	    browser.bookmarks.create({parentId: node.id, title: tabList[i].title, url: tabList[i].url})
+
+	    var t1 = performance.now();
+	    console.log("Call to tab bookmark took " + (t1 - t0) + " milliseconds.")
 	}
 
     }
     
     var dateString = returnDate("y", true);
     var tabList = windows[windowId];
-				     
+
+    // add debug info for understanding sluggish promis execution
+    var t0 = performance.now();
+
     browser.bookmarks.create({title: dateString}).then(saveTabs)
+
+    var t1 = performance.now();
+    console.log("Call to bookmark folder create took " + (t1 - t0) + " milliseconds.");
 
     delete windows[windowId];
 }
@@ -153,3 +164,14 @@ browser.browserAction.onClicked.addListener((tab) => {
     });
     getting.then(logTabsForWindows, onError);
 });
+
+// utilities for debugging
+function listWindows() {
+
+    for (let window in windows) {
+	console.log("window: " + window);
+	for (let tab of windows[window]) {
+	    console.log(tab);
+	}
+    }
+}
